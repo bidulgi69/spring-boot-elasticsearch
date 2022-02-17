@@ -1,0 +1,39 @@
+{
+  "properties": [
+    {
+      "name": "elasticsearch.username",
+      "type": "java.lang.String",
+      "description": "username of authenticated account of elasticsearch."
+    },
+    {
+      "name": "elasticsearch.password",
+      "type": "java.lang.String",
+      "description": "password of authenticated account of elasticsearch."
+    },
+    {
+      "name": "elasticsearch.host",
+      "type": "java.lang.String",
+      "description": "host (ip address) of elasticsearch server."
+    },
+    {
+      "name": "elasticsearch.port",
+      "type": "java.lang.String",
+      "description": "port number of elasticsearch server."
+    },
+    {
+      "name": "elasticsearch.index.default-name",
+      "type": "java.lang.String",
+      "description": "default name of index (board)."
+    },
+    {
+      "name": "elasticsearch.index.shards",
+      "type": "java.lang.Integer",
+      "description": "number of shards."
+    },
+    {
+      "name": "elasticsearch.index.replicas",
+      "type": "java.lang.Integer",
+      "description": "number of replicas."
+    }
+  ]
+}

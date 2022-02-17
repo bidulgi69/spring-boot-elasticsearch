@@ -1,0 +1,17 @@
+elasticsearch:
+  host: localhost
+  port: 9200
+  username: "Credential username"
+  password: "Credential password"
+
+  index:
+    name: board
+    shards: 1
+    replicas: 0
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-elasticsearch

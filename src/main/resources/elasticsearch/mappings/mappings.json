@@ -1,0 +1,50 @@
+{
+  "properties": {
+    "boardId": {
+      "type": "text"
+    },
+    "title": {
+      "type": "text",
+      "analyzer": "word_analyzer"
+    },
+    "content": {
+      "type": "text",
+      "analyzer": "whitespace"
+    },
+    "writer": {
+      "type": "keyword"
+    },
+    "password": {
+      "type": "text"
+    },
+    "comments": {
+      "properties": {
+        "boardId": {
+          "type": "keyword"
+        },
+        "writer": {
+          "type": "text"
+        },
+        "password": {
+          "type": "text"
+        },
+        "content": {
+          "type": "text",
+          "analyzer": "whitespace"
+        },
+        "created": {
+          "type": "long"
+        }
+      }
+    },
+    "like": {
+      "type": "long"
+    },
+    "dislike": {
+      "type": "long"
+    },
+    "created": {
+      "type": "long"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+elasticsearch:
+  host: localhost
+  port: 9200
+  username: a
+  password: a
+
+  index:
+    name: board
+    shards: 1
+    replicas: 0
