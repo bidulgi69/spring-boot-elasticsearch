@@ -12,13 +12,13 @@ import reactor.test.StepVerifier
 @SpringBootTest(
     classes = [ElasticsearchTestConfiguration::class]
 )
-class ElasticsearchIntegrationTest(
+class ElasticsearchConnectionTest(
     @Autowired private val reactiveElasticsearchTestClient: ReactiveElasticsearchClient,
 ) {
 
     @Test
-    @DisplayName("Integration test")
-    fun integration() {
+    @DisplayName("Connection test")
+    fun connect() {
         StepVerifier
             .create(
                 reactiveElasticsearchTestClient
