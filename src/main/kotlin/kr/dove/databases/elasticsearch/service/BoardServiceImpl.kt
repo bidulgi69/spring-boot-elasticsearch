@@ -73,12 +73,10 @@ class BoardServiceImpl(
             }
     }
 
-    override fun delete(boardId: String): Mono<Board> {
+    override fun delete(boardId: String): Mono<String> {
         return this.load(boardId)
             .flatMap { board ->
                 reactiveElasticsearchTemplate.delete(board)
-                    .then(Mono.just(board))
             }
     }
-
 }

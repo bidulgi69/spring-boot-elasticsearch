@@ -22,11 +22,11 @@ import java.nio.charset.StandardCharsets
 @TestConfiguration
 @EnableElasticsearchRepositories
 class ElasticsearchTestConfiguration(
-    @Value("\${elasticsearch.index.default-name:board}") private val defaultIndexName: String,
+    @Value("\${elasticsearch.index.name:board}") private val defaultIndexName: String,
 ): AbstractReactiveElasticsearchConfiguration() {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
-    @Bean("reactiveElasticsearchTestClient")
+    @Bean("reactiveElasticsearchTestClient", "reactiveElasticsearchClient")
     override fun reactiveElasticsearchClient(): ReactiveElasticsearchClient {
         val clientConfiguration: ClientConfiguration =
             ClientConfiguration
@@ -46,7 +46,7 @@ class ElasticsearchTestConfiguration(
             }
     }
 
-    @Bean("reactiveElasticsearchTestTemplate")
+    @Bean("reactiveElasticsearchTestTemplate", "reactiveElasticsearchTemplate")
     @DependsOn("reactiveElasticsearchTestClient")
     fun reactiveElasticsearchTemplate(): ReactiveElasticsearchOperations {
         return ReactiveElasticsearchTemplate(reactiveElasticsearchClient())

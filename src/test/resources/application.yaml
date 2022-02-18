@@ -8,3 +8,12 @@ elasticsearch:
     name: board
     shards: 1
     replicas: 0
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        data:
+          elasticsearch:
+            core: trace

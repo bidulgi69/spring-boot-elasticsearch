@@ -15,3 +15,5 @@ server:
 spring:
   application:
     name: spring-elasticsearch
+
+otpConfig: production

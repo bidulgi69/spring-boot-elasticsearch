@@ -4,6 +4,8 @@ import org.elasticsearch.client.indices.CreateIndexRequest
 import org.elasticsearch.client.indices.GetIndexRequest
 import org.elasticsearch.common.settings.Settings
 import org.elasticsearch.common.xcontent.XContentType
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.runApplication
@@ -16,6 +18,8 @@ import reactor.core.publisher.Mono
 class SpringElasticsearchApplication(
 	private val reactiveElasticsearchClient: ReactiveElasticsearchClient,
 ) {
+	private val logger: Logger = LoggerFactory.getLogger(this::class.java)
+
 	lateinit var name: String
 	var shards: Int? = null
 	var replicas: Int? = null
@@ -27,7 +31,7 @@ class SpringElasticsearchApplication(
 	fun createIndex() {
 		reactiveElasticsearchClient.indices().getIndex(GetIndexRequest(name))
 			.onErrorResume { Mono.empty() } //  if index does not exist, move to switchIfEmpty function.
-			.flatMap { println("Index already exists. $name"); Mono.just(true) }
+			.flatMap { logger.info("Index already exists. $name"); Mono.just(true) }
 			.switchIfEmpty(Mono.defer {
 				val createIndexRequest = CreateIndexRequest(name)
 				createIndexRequest.settings(
@@ -116,7 +120,7 @@ class SpringElasticsearchApplication(
 				reactiveElasticsearchClient
 					.indices()
 					.createIndex(createIndexRequest)
-			}).subscribe { println("Check Index($name) on start executed.") }	//	subscribe to publisher (Call)
+			}).subscribe { logger.info("Check Index($name) on start executed.") }	//	subscribe to publisher (Call)
 	}
 }
 

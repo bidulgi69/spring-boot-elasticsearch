@@ -1,8 +1,10 @@
 package kr.dove.databases.elasticsearch
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.PropertySource
 import org.springframework.data.elasticsearch.client.ClientConfiguration
 import org.springframework.data.elasticsearch.client.reactive.ReactiveElasticsearchClient
 import org.springframework.data.elasticsearch.client.reactive.ReactiveRestClients
@@ -11,6 +13,10 @@ import org.springframework.data.elasticsearch.core.ReactiveElasticsearchOperatio
 import org.springframework.data.elasticsearch.core.ReactiveElasticsearchTemplate
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories
 
+//  It is used to distinguish configuration injection between
+//  test environment and production environment.
+@ConditionalOnProperty(value=["otpConfig"], havingValue="production")
+@PropertySource("classpath:otp.properties")
 @Configuration
 @ConfigurationProperties(prefix = "elasticsearch")
 @EnableElasticsearchRepositories(basePackages = ["kr.dove.databases.elasticsearch.persistence"])

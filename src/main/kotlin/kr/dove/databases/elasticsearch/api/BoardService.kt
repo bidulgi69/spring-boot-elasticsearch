@@ -40,5 +40,5 @@ interface BoardService {
         value = ["/{boardId}"],
         produces = ["application/json"]
     )
-    fun delete(@PathVariable(name = "boardId") boardId: String): Mono<Board>
+    fun delete(@PathVariable(name = "boardId") boardId: String): Mono<String>
 }
