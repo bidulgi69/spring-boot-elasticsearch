@@ -7,8 +7,8 @@ Elasticsearch with spring boot + spring-data-elasticsearch
   
 ## Tests
 -- All test codes were implemented using test containers.
-1. Integration test
+1. Connection test
 
 2. Persistence test
 
-3. WebMvc Test
+3. WebFlux Test
