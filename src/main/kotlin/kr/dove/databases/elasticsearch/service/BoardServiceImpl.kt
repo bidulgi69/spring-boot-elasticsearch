@@ -29,10 +29,10 @@ class BoardServiceImpl(
         }
     }
 
-    override fun comment(comment: Comment): Mono<Board> {
+    override fun comment(boardId: String, comment: Comment): Mono<Board> {
         val queryBuilder: NativeSearchQueryBuilder = NativeSearchQueryBuilder()
             .withQuery(QueryBuilders.boolQuery()
-                .must(QueryBuilders.matchQuery("boardId", comment.boardId))
+                .must(QueryBuilders.matchQuery("boardId", boardId))
             )
 
         return reactiveElasticsearchTemplate.search(queryBuilder.build(), Board::class.java)
@@ -41,7 +41,12 @@ class BoardServiceImpl(
             .doOnError(IndexOutOfBoundsException::class.java) { throw NotFoundException("Invalid Board id.") }
             .flatMap { board ->
                 reactiveElasticsearchTemplate.save(board.apply {
-                    this.comments.add(comment)
+                    this.comments.add(
+                        comment.apply {
+                            this.boardId = boardId
+                            this.created = Date().time
+                        }
+                    )
                 })
             }
     }

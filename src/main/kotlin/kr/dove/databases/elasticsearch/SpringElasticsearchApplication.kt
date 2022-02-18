@@ -73,7 +73,7 @@ class SpringElasticsearchApplication(
 						"      },\n" +
 						"      \"content\": {\n" +
 						"        \"type\": \"text\",\n" +
-						"        \"tokenizer\": \"whitespace\"\n" +
+						"        \"analyzer\": \"whitespace\"\n" +
 						"      },\n" +
 						"      \"writer\": {\n" +
 						"        \"type\": \"keyword\"\n" +
@@ -94,7 +94,7 @@ class SpringElasticsearchApplication(
 						"          },\n" +
 						"          \"content\": {\n" +
 						"            \"type\": \"text\",\n" +
-						"            \"tokenizer\": \"whitespace\"\n" +
+						"            \"analyzer\": \"whitespace\"\n" +
 						"          },\n" +
 						"          \"created\": {\n" +
 						"            \"type\": \"long\"\n" +

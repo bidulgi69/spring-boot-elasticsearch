@@ -20,7 +20,8 @@ interface BoardService {
         consumes = ["application/json"],
         produces = ["application/json"]
     )
-    fun comment(@RequestBody comment: Comment): Mono<Board>
+    fun comment(@PathVariable(name = "boardId") boardId: String,
+                @RequestBody comment: Comment): Mono<Board>
 
     @GetMapping(
         value = ["/{boardId}"],

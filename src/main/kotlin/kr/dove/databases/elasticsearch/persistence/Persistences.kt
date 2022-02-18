@@ -25,9 +25,9 @@ data class Board(
 )
 
 data class Comment(
-    val boardId: String,
+    var boardId: String? = null,
     val writer: String,
     val password: String,
     var content: String,
-    val created: Long,
+    var created: Long? = null,
 )
